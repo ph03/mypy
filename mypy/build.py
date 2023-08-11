@@ -1178,7 +1178,7 @@ def _load_json_file(
 
 def _cache_dir_prefix(options: Options) -> str:
     """Get current cache directory (or file if id is given)."""
-    if options.bazel:
+    if options.bazel and not os.environ.get('MYPY_CACHE_DIR'):
         # This is needed so the cache map works.
         return os.curdir
     cache_dir = options.cache_dir
